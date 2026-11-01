@@ -1,0 +1,9 @@
+{
+  "resource_pack_name": "algo_te_escucha",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "listener_unsent_page": {
+      "textures": "textures/items/unsent_page"
+    }
+  }
+}

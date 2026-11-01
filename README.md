@@ -12,7 +12,7 @@ Una sola criatura 3D, `listener:the_listener`. No es una entidad vanilla retextu
 
 ## Instalar
 
-1. Descarga `AlgoTeEscucha_1.0.10.mcaddon`.
+1. Descarga `AlgoTeEscucha_1.0.10.mcaddon` de los archivos de este repositorio, o arma el pack con las carpetas `AlgoTeEscucha_BP` y `AlgoTeEscucha_RP`.
 2. Ábrelo con Minecraft Bedrock.
 3. En el mundo, activa el behavior pack y el resource pack.
 4. No hace falta activar experimentos ni Beta APIs.
@@ -27,4 +27,4 @@ En creativo, el huevo está como «Algo te escucha». En supervivencia aparece d
 - La primera vez que te alcanza: se oscurece todo, dice «i see you», pega 4 corazones y desaparece.
 - Después, ese golpe es más frecuente en cuevas.
 
-Obra original de Yoimar y Johan.
+Obra original de Yoimar y Johan. El modelo, las texturas, los sonidos, los textos y el código se hicieron para este proyecto.
