@@ -1,0 +1,125 @@
+Algo te escucha
+Add-on de terror psicológico para Minecraft Bedrock 1.21.50 o superior (incluye 1.22 y posteriores).
+
+No usa entidades vanilla retexturizadas ni un billboard. "Algo te escucha" es una entidad 3D
+(geometry.the_listener) con volumen, animaciones y sombra. La lógica fina va en Script API
+estable: @minecraft/server 1.16.0 y @minecraft/server-ui 1.3.0. No hace falta activar
+"Beta APIs" ni ningún experimento.
+
+ESTRUCTURA
+  AlgoTeEscucha_BP/     Behavior pack
+    manifest.json
+    entities/the_listener.json
+    items/unsent_page.json
+    scripts/main.js
+    texts/es_ES.lang
+    texts/en_US.lang
+  AlgoTeEscucha_RP/     Resource pack
+    manifest.json
+    entity/the_listener.entity.json
+    models/entity/the_listener.geo.json
+    animations/the_listener.animation.json
+    render_controllers/the_listener.render_controllers.json
+    textures/entity/the_listener.png
+    textures/items/unsent_page.png
+    textures/item_texture.json
+    sounds/sound_definitions.json
+    sounds/listener/*.wav
+
+CÓMO SE COMPORTA
+- Aparece de noche, en un sitio oscuro (sin antorchas, lava ni linternas cerca).
+  De día también, pero poco: al aire libre es raro, y en cueva o bajo techo sale más.
+  Busca a unos 12–42 bloques, cuando algún jugador en supervivencia o aventura lleva
+  8 minutos reales en el mundo. Solo hay uno.
+- Al aparecer, la vista se oscurece unos segundos y suena un pulso rápido (listener.pulse).
+- Si lo miras de frente, se detiene. Si estás cerca, retrocede.
+- La PRIMERA vez que te alcanza no persigue: se pone detrás, se oscurece la vista,
+  una voz dice "i see you", pega 4 corazones y desaparece.
+- Después de esa vez, el mismo golpe ocurre a veces. Arriba, 1 de cada 4 apariciones.
+  En cueva (techo cerca), un 30% más: 32.5% en vez de 25%.
+- De noche, en una cueva, bajo tierra o en un sitio cerrado y sin antorchas,
+  la canción de las tablas suena sí o sí (listener.floorboards, ~67 s).
+  Entre el segundo 20 y el 30 hay un 40% de que la entidad aparezca en medio,
+  y la música sigue. Si no sale esa vez, la canción se repite mientras siga la noche.
+  De día, al aire libre o si enciendes luz, se corta.
+- Si no lo miras, te sigue. A menos de ~36 bloques corre. La velocidad sube un poco
+  cada noche que sobrevives, con tope en 0.22 bloques por tick (unos 4.4 bloques/s),
+  por debajo del sprint. Los pasos de piedra no suenan siempre: caen cada 10–20 segundos,
+  para que no los esperes. Si te giras, el sonido se corta.
+- Si está lejos, la piedra suena detrás de ti, no donde él está.
+- Una vez por noche, si no lo miras, escribe tu nombre en el chat.
+- Al pasar puede apagar una sola antorcha cercana. No apaga linternas ni la base entera.
+- Si intentas dormir y está a menos de 32 bloques, te despierta. No te hace daño dormido.
+- Solo hace daño al llegar (4 corazones) y luego se echa atrás.
+- El pathfinder evita lava, fuego, cactus, magma, bayas, rosas de wither, nieve polvo
+  y estalactitas. El script, además, no camina hacia hoyos de 3+ bloques ni al vacío.
+  Si lo empujas (knockback), la trampa sí puede funcionar: no se teletransporta fuera de la lava.
+- Abre puertas de madera. No abre puertas de hierro ni de cobre.
+- A veces da un salto corto detrás de ti o hacia una zona oscura, en lugar de caminar.
+- De día, si te alejas, desaparece. Si sigues cerca, se queda y puede seguir persiguiendo.
+- La primera vez que se acerca deja "Página sin remitente". Úsala para leerla otra vez.
+- Textos en es_ES y en_US. El juego elige el idioma del cliente.
+
+PROBAR SIN ESPERAR
+En creativo, el huevo está en el inventario de criaturas. Busca "Algo te escucha"
+o "Something Is Listening".
+
+REEMPLAZAR EL MODELO EN BLOCKBENCH
+1. Archivo → Nuevo → Bedrock Entity. Tamaño de textura 128×128.
+2. Mantén estos huesos (las animaciones los usan):
+   torso, neck, head, jaw, arm_left, hand_left, arm_right, hand_right, leg_left, leg_right.
+   neck cuelga de torso. head cuelga de neck. jaw cuelga de head.
+   forearm_left cuelga de arm_left y hand_left de forearm_left (lo mismo a la derecha).
+   shin_left cuelga de leg_left y foot_left de shin_left (lo mismo a la derecha).
+   Las piernas cuelgan de root, no del torso: si el torso se encorva, los pies se quedan en el suelo.
+   El detalle (cabeza de bloque, ojos, goteo, costillas, garras) está en skull, socket_l,
+   socket_r, drips, ribs, spikes, scapula, clavicle, fingers_l, fingers_r, toes_l, toes_r.
+   Si los borras, vuelve a parecer un bloque.
+3. El identifier de la geometría tiene que seguir siendo geometry.the_listener.
+   Si lo cambias, edita también RP/entity/the_listener.entity.json.
+4. No actives Billboard en ningún hueso. Si lo haces, Minecraft lo aplana y pierde sombra.
+5. Exportar → Export Bedrock Geometry y sustituye
+   RP/models/entity/the_listener.geo.json
+6. Pinta o exporta la textura 128×128 sobre las UV de los cubos y sustituye
+   RP/textures/entity/the_listener.png
+7. Altura visual: ~68 píxeles, un poco más de 4 bloques (16 px = 1 bloque). La caja de
+   choque es más baja (0.86 × 1.9) para que pueda cruzar puertas y cuevas de 2 bloques.
+   La cabeza sigue viéndose por encima: el modelo mide más que la caja.
+
+SONIDOS
+Ya hay WAV de atmósfera para que el pack suene al instalarlo. Puedes sustituirlos
+por OGG con el mismo nombre (sin cambiar sound_definitions.json: la ruta no lleva extensión).
+
+  sounds/listener/breath_low.wav     respiración baja
+  sounds/listener/breath_close.wav   respiración más cerca
+  sounds/listener/whisper_1.wav      susurro
+  sounds/listener/whisper_2.wav      otro susurro
+  sounds/listener/step_1.wav         paso seco
+  sounds/listener/step_2.wav         paso desfasado
+  sounds/listener/drone_far.wav      cama musical lejana (~8 s)
+  sounds/listener/drone_near.wav     cama cuando se acerca
+  sounds/listener/drone_close.wav    cama en la misma sala
+  sounds/listener/sting_cut.wav      tono grave que se corta
+  sounds/listener/teleport.wav       desplazamiento corto
+  sounds/listener/page.wav           papel
+  sounds/listener/pulse.wav          pulso rápido al aparecer (~7 s)
+  sounds/listener/charge.wav         carrera, paso de piedra (audio del jugador)
+
+El script no los pone en bucle cerrado: los pasos no coinciden con los del andar,
+la respiración calla si lo estás mirando, el pulso suena una vez al aparecer
+y la carrera solo mientras corre de espaldas. La música de fondo sube según la distancia.
+
+INSTALAR
+Windows: doble clic en AlgoTeEscucha.mcaddon. Minecraft importa los dos packs.
+Android / iOS: ábrelo con Minecraft, o copia cada carpeta a
+  games/com.mojang/behavior_packs y games/com.mojang/resource_packs.
+En el mundo: Ajustes → Packs de comportamiento y Packs de recursos. Activa los dos.
+Se piden entre sí. No actives experimentos. Los trucos no hacen falta.
+
+Consolas (Xbox, PlayStation, Switch) no importan un .mcaddon suelto.
+Sube el mundo con los dos packs activos a un Realm desde Windows o el móvil
+y entra a ese Realm desde la consola.
+
+Daño de referencia: entities/the_listener.json, grupo listener:hunt,
+minecraft:attack.damage = 8 (4 corazones).
+Espera de aparición: scripts/main.js, PRESENCE_GOAL.
