@@ -1,0 +1,24 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "pack.name",
+    "description": "pack.description",
+    "uuid": "e5a17c38-9d42-4b6f-a083-1c7e5f9b2d60",
+    "version": [1, 0, 10],
+    "min_engine_version": [1, 21, 50]
+  },
+  "modules": [
+    {
+      "description": "Algo te escucha — recursos",
+      "type": "resources",
+      "uuid": "f08c3b91-6e24-4a7d-b516-2d9a4c8e0f73",
+      "version": [1, 0, 10]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "7c2f1a64-8e15-4c3a-9b70-2d6f4a8c1e90",
+      "version": [1, 0, 10]
+    }
+  ]
+}

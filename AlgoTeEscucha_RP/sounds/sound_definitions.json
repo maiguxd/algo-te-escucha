@@ -1,0 +1,104 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "listener.breath": {
+      "category": "neutral",
+      "min_distance": 0.4,
+      "max_distance": 14,
+      "sounds": [
+        { "name": "sounds/listener/breath_low", "volume": 0.55, "pitch": 0.95, "load_on_low_memory": true },
+        { "name": "sounds/listener/breath_close", "volume": 0.7, "pitch": 0.88, "load_on_low_memory": true }
+      ]
+    },
+    "listener.whisper": {
+      "category": "ambient",
+      "min_distance": 0.3,
+      "max_distance": 10,
+      "sounds": [
+        { "name": "sounds/listener/whisper_1", "volume": 0.45, "pitch": 1, "load_on_low_memory": true },
+        { "name": "sounds/listener/whisper_2", "volume": 0.4, "pitch": 0.9, "load_on_low_memory": true }
+      ]
+    },
+    "listener.step": {
+      "category": "neutral",
+      "min_distance": 0.2,
+      "max_distance": 16,
+      "sounds": [
+        { "name": "sounds/listener/step_1", "volume": 1, "pitch": 1, "load_on_low_memory": true },
+        { "name": "sounds/listener/step_2", "volume": 1, "pitch": 0.94, "load_on_low_memory": true }
+      ]
+    },
+    "listener.drone.far": {
+      "category": "music",
+      "sounds": [
+        { "name": "sounds/listener/drone_far", "volume": 1, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.drone.near": {
+      "category": "music",
+      "sounds": [
+        { "name": "sounds/listener/drone_near", "volume": 1, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.drone.close": {
+      "category": "music",
+      "sounds": [
+        { "name": "sounds/listener/drone_close", "volume": 1, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.sting": {
+      "category": "neutral",
+      "min_distance": 1,
+      "max_distance": 20,
+      "sounds": [
+        { "name": "sounds/listener/sting_cut", "volume": 0.8, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.teleport": {
+      "category": "ambient",
+      "min_distance": 0.5,
+      "max_distance": 18,
+      "sounds": [
+        { "name": "sounds/listener/teleport", "volume": 0.55, "pitch": 0.8, "load_on_low_memory": true }
+      ]
+    },
+    "listener.page": {
+      "category": "ui",
+      "sounds": [
+        { "name": "sounds/listener/page", "volume": 0.7, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.pulse": {
+      "category": "music",
+      "sounds": [
+        { "name": "sounds/listener/pulse", "volume": 1, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.charge": {
+      "category": "neutral",
+      "min_distance": 2,
+      "max_distance": 36,
+      "sounds": [
+        { "name": "sounds/listener/charge", "volume": 1, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.iseeyou": {
+      "category": "ui",
+      "sounds": [
+        { "name": "sounds/listener/iseeyou", "volume": 1, "pitch": 1, "load_on_low_memory": true }
+      ]
+    },
+    "listener.floorboards": {
+      "category": "ambient",
+      "sounds": [
+        {
+          "name": "sounds/listener/floorboards",
+          "stream": true,
+          "volume": 0.8,
+          "pitch": 1,
+          "load_on_low_memory": true
+        }
+      ]
+    }
+  }
+}
